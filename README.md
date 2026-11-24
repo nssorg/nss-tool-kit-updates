@@ -1,28 +1,27 @@
-# NSS TOOL KIT — Updates
+# NSS TOOL KIT Updates
 
-This public repository hosts versioned release metadata and installer packages for the NSS TOOL KIT After Effects panel. The source repository is private and owner controlled.
+Public release channel for the NSS TOOL KIT After Effects extension. The owner source repository is private: [nssorg/nss-tool-kit-source](https://github.com/nssorg/nss-tool-kit-source).
 
-## First installation
+## Install
 
-No updater release has been published yet. After the owner publishes the first version, first-time users can install with **NSS-TOOL-KIT-Installer.zip** from the [Releases](https://github.com/nssorg/nss-tool-kit-updates/releases) page.
+Download the [v1.1.0 installer](https://github.com/nssorg/nss-tool-kit-updates/releases/download/v1.1.0/NSS-TOOL-KIT-Installer.zip), extract it, run `Install NSS TOOL KIT.bat`, then restart After Effects and open **Window > Extensions > NSS TOOL KIT**.
 
-## Updates after installation
+## Updates
 
-The panel checks GitHub when it opens and every six hours. When a newer version is available, it shows release notes and offers **Update now** or **Later**. The updater downloads **NSS-TOOL-KIT.zip**, checks its SHA-256 value from **NSS-update.json**, replaces the extension files, and reloads the panel. Presets, caption settings, and saved user data are stored outside the extension folder.
+The panel checks GitHub when it opens and every 15 minutes while it remains open. A newer release displays **Update now** and **Later**. An update reaches an already-open panel at its next poll; GitHub does not push the notice instantly. Before installation, the updater validates the feed, package URL, extension ID, version, and SHA-256 checksum, and keeps a rollback copy.
 
-## Owner publishing workflow
+The public release assets are `NSS-TOOL-KIT.zip` and `NSS-update.json`. New releases use the same asset names and a new version tag.
 
-1. Open **NSS Update Publisher.bat** from the private source archive.
-2. Create a fine-grained GitHub token limited to **nssorg/nss-tool-kit-source** and **nssorg/nss-tool-kit-updates** with **Contents: Read and write**. Paste it only into the local publisher; it is not shipped with the plugin.
-3. Enter a newer version in **major.minor.patch** format, add release notes, then choose **Build and publish update**.
-4. The publisher creates the public update release and a private source snapshot. Share the installer asset with first-time users; existing installs will see the update prompt automatically.
+## Owner publishing
 
-## Repository and release safety
+Use `NSS Update Publisher.bat` from the private source archive. Publish with an owner-only GitHub token stored locally and limited to the two NSS repositories. The publisher builds the package, updates the SHA-256 feed, and publishes the public update release plus a private source snapshot. Never include a GitHub token or API key in the plugin or release ZIP.
 
-- Keep the source code private. This repository is public so plugin users can download releases.
-- Never put GitHub tokens, API keys, or private credentials in this repository or in a release package.
-- Anyone who receives an installable plugin package can inspect or copy its files. Private GitHub source protects the repository; it cannot make files on a user computer inaccessible to that user.
-- The caption engine and speech model are downloaded separately to Documents/NSS TOOL KIT/engine and are not included in the plugin release ZIP.
+## Security and privacy
 
-Private source: [nssorg/nss-tool-kit-source](https://github.com/nssorg/nss-tool-kit-source)  
-Public releases: [nssorg/nss-tool-kit-updates/releases](https://github.com/nssorg/nss-tool-kit-updates/releases)
+Private GitHub source limits who can view the repository. The public install package must contain the files users run, so recipients can read or copy the installed plugin code and assets. Client-side files cannot be made inaccessible to a computer owner. Caption engines and models are downloaded separately and are not included in the plugin release ZIP.
+
+## Releases
+
+- [Latest release](https://github.com/nssorg/nss-tool-kit-updates/releases/latest)
+- [v1.1.0 release](https://github.com/nssorg/nss-tool-kit-updates/releases/tag/v1.1.0)
+- [Private owner source repository](https://github.com/nssorg/nss-tool-kit-source)
